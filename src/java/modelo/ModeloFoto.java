@@ -6,8 +6,10 @@
 package modelo;
 
 import hibernate.HibernateUtil;
+import hibernate.Foto;
 import hibernate.Inmueble;
 import java.util.List;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -15,65 +17,68 @@ import org.hibernate.Session;
  *
  * @author Josué
  */
-public class ModeloInmueble {
-    
-  public static List<Inmueble> get() {
+public class ModeloFoto {
+
+    public static List<Foto> get(int idInmueble) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String hql = "from Inmueble";
+        String hql = "from Foto where idinmueble =" + idInmueble;
         Query q = session.createQuery(hql);
-        List<Inmueble> inmuebles = q.list();
+        List<Foto> fotos = q.list();
+        //List<Foto> fotos = (List<Foto>) q.list();
+        //for (Foto f : fotos)
+        //    Hibernate.initialize(f);
         session.getTransaction().commit();
         session.close();
-        return inmuebles;
+        return fotos;
     }
-    
-    public static Inmueble get(String id) {
+
+    public static Foto get(String id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         //Forma 1
         /*String hql = "from Prueba where id = " +id;
-        Query q = session.createQuery(hql);
-        Prueba prueba = ((List<Prueba>)q.list()).get(0);*/
+         Query q = session.createQuery(hql);
+         Prueba prueba = ((List<Prueba>)q.list()).get(0);*/
         //Forma 2
-        Inmueble i = (Inmueble)session.get(Inmueble.class, Integer.parseInt(id));
+        Foto f = (Foto) session.get(Foto.class, Integer.parseInt(id));
         session.getTransaction().commit();
         session.close();
-        return i;
+        return f;
     }
-    
+
     public static void delete(String id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        Inmueble i = (Inmueble)session.load(Inmueble.class, Integer.parseInt(id));
-        //Inmueble i = (Inmueble)session.get(Inmueble.class, Integer.parseInt(id));
-        session.delete(i);
+        Foto f;
+        f = (Foto) session.load(Foto.class, Integer.parseInt(id));
+        session.delete(f);
+        //Foto f = (Foto)session.get(Foto.class, Integer.parseInt(id));
         session.getTransaction().commit();
         session.flush(); // me garantiza que a partir de este punto la operación ya está realizada
         session.close();
     }
-    
-    public static void insert(Inmueble inmueble) {
+
+    public static void insert(Foto foto) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        
-        session.save(inmueble);
-        
+
+        session.save(foto);
+
         session.getTransaction().commit();
         session.flush(); // me garantiza que a partir de este punto la operación ya está realizada
         session.close();
     }
-    
-    public static void update(Inmueble inmueble) {
+
+    public static void update(Foto foto) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        
-        session.update(inmueble);
-        
+
+        session.update(foto);
+
         session.getTransaction().commit();
         session.flush(); // me garantiza que a partir de este punto la operación ya está realizada
         session.close();
     }
-    
-    
+
 }
