@@ -213,16 +213,6 @@ public class Controlador extends HttpServlet {
         return null;
     }
 
-    public void eliminarFotos(List<Foto> fotos) {
-        File file = null;
-        for (int i = 0; i < fotos.size(); i++) {
-            file = new File(fotos.get(i).getRuta());
-            if (file.exists()) {
-                file.delete();
-            }
-        }
-    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
