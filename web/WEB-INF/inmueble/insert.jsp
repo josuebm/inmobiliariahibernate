@@ -43,6 +43,7 @@
             <output>Usuario: </output>
             <input type="text" name="usuario" value="" />
             <br/>
+            <input type="hidden" name="idAndroid" value="0" />
             <input type="hidden" name="target" value="inmueble" />
             <input type="hidden" name="op" value="insert" />
             <input type="hidden" name="action" value="op" />

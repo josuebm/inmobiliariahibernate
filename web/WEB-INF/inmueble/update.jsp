@@ -19,6 +19,7 @@
                         %>
         <form action="control?target=inmueble&op=update&action=op" method="POST">   
             <input type="hidden" name="id" value="<%= i.getId() %>" />
+            <input type="hidden" name="idAndroid" value="<%= i.getIdAndroid() %>" />
             <output>Localidad: </output>
             <input type="text" name="localidad" value="<%= i.getLocalidad()%>" />
             <br/>

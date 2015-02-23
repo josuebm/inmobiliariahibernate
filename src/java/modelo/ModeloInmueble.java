@@ -42,6 +42,18 @@ public class ModeloInmueble {
         return i;
     }
     
+    public static void delete(Integer idAndroid) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Inmueble where idAndroid = " +idAndroid;
+        Query q = session.createQuery(hql);
+        Inmueble i = ((List<Inmueble>)q.list()).get(0);
+        session.delete(i);
+        session.getTransaction().commit();
+        session.flush(); // me garantiza que a partir de este punto la operación ya está realizada
+        session.close();
+    }
+    
     public static void delete(String id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -61,6 +73,7 @@ public class ModeloInmueble {
         
         session.getTransaction().commit();
         session.flush(); // me garantiza que a partir de este punto la operación ya está realizada
+        
         session.close();
     }
     

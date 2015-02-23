@@ -77,7 +77,11 @@ public class Controlador extends HttpServlet {
                         forward = true;
                         destino = "WEB-INF/inmueble/index.jsp";
                         request.setAttribute("datos", ModeloInmueble.get());
-                    } else if (target.equals("inmueble") && op.equals("delete") && action.equals("op")) {
+                    } else if (target.equals("inmueble") && op.equals("delete") && action.equals("opAndroid")) {
+                        forward = false;
+                        ModeloInmueble.delete(Integer.valueOf(request.getParameter("idAndroid")));
+                        destino = "control?target=inmueble&op=select&action=view";
+                    }else if (target.equals("inmueble") && op.equals("delete") && action.equals("op")) {
                         forward = false;
                         ModeloInmueble.delete(request.getParameter("id"));
                         destino = "control?target=inmueble&op=select&action=view";
@@ -88,12 +92,14 @@ public class Controlador extends HttpServlet {
                         forward = false;
                         destino = "control?target=inmueble&op=select&action=view";
                         Inmueble inmueble = new Inmueble();
+                        inmueble.setIdAndroid(Integer.valueOf(request.getParameter("idAndroid")));
                         inmueble.setLocalidad(request.getParameter("localidad"));
                         inmueble.setDireccion(request.getParameter("direccion"));
                         inmueble.setTipo(Integer.parseInt(request.getParameter("tipo")));
                         inmueble.setHabitaciones(Integer.parseInt(request.getParameter("habitaciones")));
                         inmueble.setPrecio(Float.valueOf(request.getParameter("precio")));
                         inmueble.setUsuario(request.getParameter("usuario"));
+                        
                         ModeloInmueble.insert(inmueble);
                     } else if (target.equals("inmueble") && op.equals("update") && action.equals("view")) {
                         forward = true;
@@ -103,6 +109,7 @@ public class Controlador extends HttpServlet {
                         forward = false;
                         destino = "control?target=inmueble&op=select&action=view";
                         Inmueble inmueble = new Inmueble();
+                        inmueble.setIdAndroid(Integer.valueOf(request.getParameter("idAndroid")));
                         inmueble.setId(Integer.parseInt(request.getParameter("id")));
                         inmueble.setLocalidad(request.getParameter("localidad"));
                         inmueble.setDireccion(request.getParameter("direccion"));
@@ -136,6 +143,7 @@ public class Controlador extends HttpServlet {
                         forward = false;
                         error = false;
                         Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+                        System.out.println("FILEPARTTTTT : "+ request.getPart("file"));
                         String fileName = getFileName(filePart);
                         InputStream fileContent = filePart.getInputStream();
                         String idinmueble = request.getParameter("idinmueble");

@@ -8,6 +8,9 @@
             <column name="_id" />
             <generator class="identity" />
         </id>
+        <property name="idAndroid" type="java.lang.Integer">
+            <column name="idAndroid" />
+        </property>
         <property name="localidad" type="string">
             <column name="localidad" length="50" />
         </property>

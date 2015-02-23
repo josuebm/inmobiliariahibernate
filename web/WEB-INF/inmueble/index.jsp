@@ -22,6 +22,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>IDANDROID</th>
                         <th>LOCALIDAD</th>
                         <th>DIRECCIÓN</th>
                         <th>TIPO</th>
@@ -40,6 +41,7 @@
                     %>
                     <tr>
                         <td><%= i.getId()%></td>
+                        <td><%= i.getIdAndroid() %></td>
                         <td><%= i.getLocalidad()%></td>
                         <td><%= i.getDireccion()%></td>
                         <td><%= i.getTipo()%></td>

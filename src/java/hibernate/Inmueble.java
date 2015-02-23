@@ -12,6 +12,7 @@ public class Inmueble  implements java.io.Serializable {
 
 
      private Integer id;
+     private Integer idAndroid;
      private String localidad;
      private String direccion;
      private Integer tipo;
@@ -40,6 +41,15 @@ public class Inmueble  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Integer getIdAndroid() {
+        return idAndroid;
+    }
+
+    public void setIdAndroid(Integer idAndroid) {
+        this.idAndroid = idAndroid;
+    }
+    
     public String getLocalidad() {
         return this.localidad;
     }
